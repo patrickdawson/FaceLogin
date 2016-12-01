@@ -36,3 +36,4 @@ Thumbs.db
 platforms/
 plugins/
 www/
+!www/.gitkeep
