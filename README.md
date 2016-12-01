@@ -6,11 +6,19 @@ and
 
 ## Preinstalled Components
 With this project the following components are preinstalled:
-### cordova platforms
+### cordova
+#### platforms
 - browser
+#### plugins
+- cordova-plugin-camera
+- cordova-plugin-nativestorage
 
 ### JavaScript packages
 - lodash
+- angular2-toaster
+- bootstrap
+- font-awesome
+- jquery
 
 ## useful commands
 ### development

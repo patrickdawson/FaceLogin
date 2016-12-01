@@ -1,19 +1,28 @@
-<div>
-  <header>
-    <div>
-      <!-- Title -->
-      <span>{{title}}</span>
+<toaster-container [toasterconfig]="toasterconfig"> </toaster-container>
 
-      <!-- Navigation with router directives-->
-      <nav>
-        <a [routerLink]="['/']">Home</a>
-      </nav>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">{{title}}</a>
     </div>
-  </header>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a [routerLink]="['/']">Home</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="authService.isAuthenticated"><a [routerLink]="['/login']" (click)="logout()">Logout </a></li>
+        <li *ngIf="!authService.isAuthenticated"><a [routerLink]="['/login']">Login </a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 
-  <main>
-    <h1>{{title}}</h1>
-  </main>
+<div class="jumbotron">
+  <router-outlet></router-outlet>
 </div>
-<!-- Router Outlet -->
-<router-outlet></router-outlet>
