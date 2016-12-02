@@ -11,7 +11,6 @@ import {ToasterService} from "angular2-toaster";
 })
 export class LoginComponent implements OnInit {
   title = "Login";
-  imgData: string;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -25,20 +24,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  login(username: string, password: string) {
+  login() {
     this.cordova.camera.getPicture()
-    .then((fileUri) => {
-      console.log("Got picture: " + fileUri);
-      this.imgData = fileUri;
-    });
-    this.authService.login(username, password)
-    .subscribe((auth) => {
-      if (auth) {
-        this.router.navigate(['/home']);
-        this.toasterService.pop("info", "Login erfolgreich");
-      }
-    }, () => {
-      this.toasterService.pop("error", "Login fehlgeschlagen");
-    });
+    .then(fileUri => this.authService.login(fileUri)
+      .subscribe((auth) => {
+        if (auth) {
+          this.router.navigate(['/home']);
+          this.toasterService.pop("info", "Login erfolgreich");
+        }
+      }, () => {
+        this.toasterService.pop("error", "Login fehlgeschlagen");
+      }));
   }
 }

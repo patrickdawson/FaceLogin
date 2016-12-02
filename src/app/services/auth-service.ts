@@ -1,14 +1,16 @@
 import {Injectable} from '@angular/core';
-import {Observable, Observer} from "rxjs";
+import {Observable} from "rxjs";
+import {ActionLogService} from "./action-log.service";
 
 @Injectable()
 export class AuthService {
   isAuthenticated: Boolean;
 
-  constructor() {
+  constructor(private actionLog: ActionLogService) {
   }
 
-  login(username: string, password: string): Observable<Boolean> {
+  login(dataUrl: string): Observable<Boolean> {
+    this.actionLog.addLog(`requested Login with data from: ${dataUrl}`);
     return Observable.create((observer) => {
       this.isAuthenticated = true;
       observer.next(true);

@@ -11,6 +11,7 @@ import {AuthGuard} from "./auth-guard";
 import {AuthService} from "./services/auth-service";
 import {CordovaService} from "./services/cordova.service";
 import {ToasterModule} from "angular2-toaster";
+import {ActionLogService} from "./services/action-log.service";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {ToasterModule} from "angular2-toaster";
     Router
   ],
   providers: [
+    ActionLogService,
     AuthGuard,
     AuthService,
     CordovaService
