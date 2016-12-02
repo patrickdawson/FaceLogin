@@ -28,6 +28,8 @@
     "jquery": "^3.1.1",
     "lodash": "^4.17.2",
     "rxjs": "5.0.0-beta.12",
+    "superagent": "^3.1.0",
+    "superagent-proxy": "^1.0.2",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.6.23"
   },

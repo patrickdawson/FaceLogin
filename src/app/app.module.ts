@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, JsonpModule} from '@angular/http';
 
 import {AppComponent} from './app/app.component';
 import {HomeComponent} from './home/home.component';
@@ -12,26 +12,28 @@ import {AuthService} from "./services/auth-service";
 import {CordovaService} from "./services/cordova.service";
 import {ToasterModule} from "angular2-toaster";
 import {ActionLogService} from "./services/action-log.service";
+import {MsCognitiveApiAdapter} from './services/ms-cognitive-api-adapter';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
-    HomeComponent,
     AppComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+      JsonpModule,
     ToasterModule,
-    Router
+    Router,
   ],
   providers: [
     ActionLogService,
     AuthGuard,
     AuthService,
-    CordovaService
+    CordovaService,
+    MsCognitiveApiAdapter
   ],
   bootstrap: [AppComponent]
 })
