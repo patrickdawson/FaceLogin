@@ -52,7 +52,7 @@ export class MsCognitiveApiAdapter {
                     const candidates = response.json()[0].candidates;
                     if (candidates.length > 0) {
                         const personId = candidates[0].personId;
-                        this.personIdToPersonName(personId);
+                        this.personIdToPersonName(personId).then((name) => resolve(name));
                     } else {
                         reject("No matching candidates");
                     }
@@ -71,7 +71,7 @@ export class MsCognitiveApiAdapter {
             this.http.post("https://api.projectoxford.ai/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false", image, {headers})
                 .subscribe((response) => {
                     const personId = response.json()[0].faceId;
-                    this.faceIdToPersonId(personId);
+                    this.faceIdToPersonId(personId).then((name) => resolve(name));
                 }, (err) => {
                     reject(`faceToPersonId failed: ${err}`);
                 });
