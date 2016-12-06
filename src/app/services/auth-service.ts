@@ -23,6 +23,10 @@ export class AuthService {
                     observer.next(false);
                 }
                 observer.complete();
+            })
+            .catch((err) => {
+              observer.error(err);
+              observer.complete();
             });
         });
     }

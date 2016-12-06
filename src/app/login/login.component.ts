@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   login() {
     Promise.resolve()
       .then(() => {
-        return this.http.get("assets/Patrick_Selfie.jpeg", {
+        return this.http.get("assets/Daniel.jpg", {
           headers: {'Content-Type': 'image/jpg'},
           responseType: ResponseContentType.Blob
         })
