@@ -8,7 +8,7 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class MsCognitiveApiAdapter {
 
-    private API_KEY = "869d3b5d50bb4ea482153e5e81761c1d";
+    private API_KEY = "<enter your key>";
 
     constructor(private http: Http) {
 

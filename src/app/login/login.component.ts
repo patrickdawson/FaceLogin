@@ -27,31 +27,20 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    Promise.resolve()
-      .then(() => {
-        return this.http.get("assets/Daniel.jpg", {
-          headers: {'Content-Type': 'image/jpg'},
-          responseType: ResponseContentType.Blob
-        })
-          .map(res => {
-            return new Blob([res._body], {
-              type: res.headers.get("Content-Type")
-            });
-          })
-          .toPromise();
-      })
-      .then((image) => this.authService.login(image)
-        .subscribe((auth) => {
-          if (auth) {
-            this.router.navigate(['/home']);
-            this.toasterService.pop("info", "Login erfolgreich");
-          }
-        }, () => {
-          this.toasterService.pop("error", "Login fehlgeschlagen");
-        }));
-
-    /*this.cordova.camera.getPicture()
-     .then(fileUri => this.authService.login(fileUri)
+    /*Promise.resolve()
+     .then(() => {
+     return this.http.get("assets/Daniel.jpg", {
+     headers: {'Content-Type': 'image/jpg'},
+     responseType: ResponseContentType.Blob
+     })
+     .map(res => {
+     return new Blob([res._body], {
+     type: res.headers.get("Content-Type")
+     });
+     })
+     .toPromise();
+     })
+     .then((image) => this.authService.login(image)
      .subscribe((auth) => {
      if (auth) {
      this.router.navigate(['/home']);
@@ -60,5 +49,22 @@ export class LoginComponent implements OnInit {
      }, () => {
      this.toasterService.pop("error", "Login fehlgeschlagen");
      }));*/
+
+    this.cordova.camera.getPicture()
+    .then(fileUri => {
+      console.log(fileUri);
+      console.log(fileUri.length);
+      const buffer = new Buffer(fileUri, 'base64');
+      return buffer.buffer;
+    })
+      .then(data => this.authService.login(data)
+        .subscribe((auth) => {
+          if (auth) {
+            this.router.navigate(['/home']);
+            this.toasterService.pop("info", "Login erfolgreich");
+          }
+        }, () => {
+          this.toasterService.pop("error", "Login fehlgeschlagen");
+        }));
   }
 }
